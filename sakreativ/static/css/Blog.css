@@ -1,8 +1,18 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
 
-a.white-link{
-    color:black !important;
+
+a:hover{
+    color: #a1196b !important;
+}
+
+
+a.white-link:link{
+    color:black;
+    text-decoration: none !important;
+}
+a.white-link:visited{
+    color:black;
     text-decoration: none !important;
 }
 
