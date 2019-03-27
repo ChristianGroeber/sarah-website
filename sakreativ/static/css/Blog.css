@@ -1,5 +1,15 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
+
+a.white-link{
+    color:black !important;
+    text-decoration: none !important;
+}
+
+.rounded:hover{
+    box-shadow: 2.5px 2.5px 5px rgba(0,0,0, 0.5) !important;
+}
+
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
