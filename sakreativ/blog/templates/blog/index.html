@@ -50,7 +50,7 @@
             <div class="blog-post rounded p-3">
               <h2 class="blog-post-title">{{ post.title }}</h2>
               <p class="blog-post-meta">{{ post.date_posted|date:'d.m.Y' }}</p>
-              <p>{{ post.text }}</p>
+              <p>{{ post.text|safe }}</p>
             </div><!-- /.blog-post -->
             </a>
             {% endfor %}
