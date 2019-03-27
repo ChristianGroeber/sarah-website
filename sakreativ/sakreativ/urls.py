@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/filebrowser/', site.urls),
+    path('grappelli/', include('grappelli.urls')),
 ]
 
 if settings.DEBUG:
