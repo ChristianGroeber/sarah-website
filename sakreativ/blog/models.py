@@ -9,6 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     date_posted = models.DateTimeField()
     text = FroalaField()
+    main_image = models.ImageField(blank=True)
     featured = models.BooleanField(default=False)
 
     def __str__(self):
