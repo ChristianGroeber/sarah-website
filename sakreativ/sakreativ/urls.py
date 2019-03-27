@@ -17,16 +17,13 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from filebrowser.sites import site
 
 from . import settings
 
 urlpatterns = [
     path('', include('blog.urls')),
     path('admin/', admin.site.urls),
-    url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^admin/filebrowser/', site.urls),
-    path('grappelli/', include('grappelli.urls')),
+    url(r'^froala_editor/', include('froala_editor.urls')),
 ]
 
 if settings.DEBUG:

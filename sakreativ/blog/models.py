@@ -1,13 +1,13 @@
 from django.db import models
+from froala_editor.fields import FroalaField
 
 # Create your models here.
-from tinymce import HTMLField
 
 
 class Post(models.Model):
-    date_posted = models.DateTimeField()
     title = models.CharField(max_length=255)
-    text = HTMLField('Content')
+    date_posted = models.DateTimeField()
+    text = FroalaField()
     featured = models.BooleanField(default=False)
 
     def __str__(self):

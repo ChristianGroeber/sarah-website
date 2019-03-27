@@ -32,8 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'filebrowser',
-    'tinymce',
+    'froala_editor',
     'blog',
     'django.contrib.admin',
     'django.contrib.auth',
