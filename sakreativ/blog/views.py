@@ -11,7 +11,7 @@ def index(request):
 
 def blog_post(request, id):
     post = get_object_or_404(Post, id=id)
-    return render(request, 'blog/blog_post.html', {'post': post})
+    return render(request, 'blog/blog_post.html', {'post': post, 'main_image': post.main_image})
 
 
 def ueber_mich(request):

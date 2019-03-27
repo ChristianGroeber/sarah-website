@@ -1,6 +1,10 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
 
+@keyframes add-shadow{
+    from {box-shadow: 0;}
+    to {box-shadow: 2.5px 2.5px 5px rgba(0,0,0, 0.5) !important;}
+}
 
 a:hover{
     color: #a1196b !important;
@@ -17,7 +21,7 @@ a.white-link:visited{
 }
 
 .rounded:hover{
-    box-shadow: 2.5px 2.5px 5px rgba(0,0,0, 0.5) !important;
+box-shadow: 2.5px 2.5px 5px rgba(0,0,0, 0.5) !important;
 }
 
 .blog-header {
