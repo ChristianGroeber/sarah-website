@@ -25,7 +25,7 @@ SECRET_KEY = 'tqpvbdfmok)cm=-r-ndwf8j+=-7yyjlh7mk3fw#+ytj#w-iu6u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sakrea2019.pythonanywhere.com']
 
 
 # Application definition
