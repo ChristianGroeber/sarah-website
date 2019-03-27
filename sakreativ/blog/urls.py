@@ -6,5 +6,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('blog/<id>/', views.blog_post),
-    url(r'^tinymce/', include('tinymce.urls')),
+    path('ueber-mich', views.ueber_mich),
 ]

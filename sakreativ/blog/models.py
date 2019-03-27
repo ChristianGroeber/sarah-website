@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from froala_editor.fields import FroalaField
 
@@ -16,3 +17,17 @@ class Post(models.Model):
 
 class PostList(models.Model):
     posts = models.ManyToManyField(Post, limit_choices_to=20)
+
+
+class UeberMich(models.Model):
+    title = models.CharField(blank=False, max_length=500, default='')
+    text = FroalaField()
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if UeberMich.objects.exists() and not self.pk:
+            raise ValidationError('There is can be only one JuicerBaseSettings instance')
+        return super(UeberMich, self).save(*args, **kwargs)
+
