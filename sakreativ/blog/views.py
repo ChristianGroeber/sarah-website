@@ -7,7 +7,7 @@ def index(request):
     posts = Post.objects.all()
     featured_post = None
     try:
-        featured_post = Post.objects.get(featured=True)
+        featured_post = Post.objects.filter(featured=True)
     except Exception:
         print('there\'s no featured post')
     return render(request, 'blog/index.html', {'posts': posts, 'featured_post': featured_post})
