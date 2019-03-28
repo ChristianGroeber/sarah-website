@@ -34,6 +34,7 @@ class Page(models.Model):
     title = models.CharField(max_length=50)
     link = models.CharField(max_length=200)
     show_on_page = models.BooleanField(default=True)
+    only_show_to_me = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
