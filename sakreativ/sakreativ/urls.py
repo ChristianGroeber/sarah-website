@@ -22,7 +22,7 @@ from . import settings
 
 urlpatterns = [
     path('', include('blog.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     url(r'^froala_editor/', include('froala_editor.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
