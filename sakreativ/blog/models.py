@@ -43,7 +43,7 @@ class Page(models.Model):
 
 class MyImage(models.Model):
     image = models.ImageField(upload_to='gallery_picture')
-    description = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=100, default='image')
 
     def __str__(self):
         return self.description
@@ -53,4 +53,13 @@ class MyImage(models.Model):
         img = Image.open(self.image.path)
         img.thumbnail((300, 300), Image.ANTIALIAS)
         img.save(self.image.path)
+
+
+class Gallery(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=300, blank=True)
+    images = models.ManyToManyField(MyImage)
+
+    def __str__(self):
+        return self.title
 
