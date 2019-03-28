@@ -8,4 +8,5 @@ urlpatterns = [
     path('blog/<id>/', views.blog_post),
     path('ueber-mich', views.ueber_mich),
     path('galerie', views.gallery),
+    path('galerie/<gallery>', views.gallery),
 ]

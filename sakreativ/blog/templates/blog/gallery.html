@@ -1,17 +1,16 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <!--{% for i in "x"|rjust:num_images %}
-        <div class="row">
-            <p>{{forloop.counter}}</p>
-            <div class="col-sm-6">
-                <p>{{ list_images.forloop.counter }}</p>
-                asdf
-            </div>
-        </div>
-    {% endfor %}-->
-
+<div class="row">
+    <div class="col-sm-8"> <!--images-->
     {% for img in list_images %}
         <img src="{{ img.image.url }}" width='300'>
     {% endfor %}
+    </div> <!--end images-->
+    <div class="col-sm-4">  <!--galleries-->
+        {% for gallery in galleries %}
+            <a href="galerie/{{gallery.title}}">{{gallery.title}}</a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
