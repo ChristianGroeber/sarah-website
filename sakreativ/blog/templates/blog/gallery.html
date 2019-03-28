@@ -12,6 +12,6 @@
     {% endfor %}-->
 
     {% for img in list_images %}
-        <img src="{{ MEDIA_ROOT}}/{{img}}">
+        <img src="{{ img.image.url }}" width='300'>
     {% endfor %}
 {% endblock %}

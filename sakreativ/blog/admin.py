@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Post, UeberMich, Page
+from .models import Post, UeberMich, MyImage, Page
 # Register your models here.
 
 
 admin.site.register(Post)
 admin.site.register(UeberMich)
 admin.site.register(Page)
+admin.site.register(MyImage)

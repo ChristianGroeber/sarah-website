@@ -37,3 +37,8 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class MyImage(models.Model):
+    image = models.ImageField(upload_to='gallery_picture')
+    description = models.CharField(max_length=100, blank=True)
