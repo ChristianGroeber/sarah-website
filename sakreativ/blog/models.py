@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from froala_editor.fields import FroalaField
+from PIL import Image
 
 # Create your models here.
 
@@ -43,3 +44,13 @@ class Page(models.Model):
 class MyImage(models.Model):
     image = models.ImageField(upload_to='gallery_picture')
     description = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.description
+
+    def save(self, *args):
+        super(MyImage, self).save(force_update=False)
+        img = Image.open(self.image.path)
+        img.thumbnail((300, 300), Image.ANTIALIAS)
+        img.save(self.image.path)
+
