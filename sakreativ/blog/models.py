@@ -7,6 +7,7 @@ from froala_editor.fields import FroalaField
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    description = models.CharField(max_length=300, default='Lies meinen neuesten Beitrag')
     date_posted = models.DateTimeField()
     text = FroalaField()
     main_image = models.ImageField(blank=True)
@@ -14,10 +15,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class PostList(models.Model):
-    posts = models.ManyToManyField(Post, limit_choices_to=20)
 
 
 class UeberMich(models.Model):
