@@ -3,9 +3,15 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-8"> <!--images-->
-    {% for img in list_images %}
-        <img src="{{ img.image.url }}" width='300'>
-    {% endfor %}
+        <div class="text-center text-lg-left row">
+            {% for img in list_images %}
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4">
+                    <img class="img-fluid img-thumbnail" src="{{ img.image.url }}" alt="{{ img.description }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div> <!--end images-->
     <div class="col-sm-4">  <!--galleries-->
         {% for gallery in galleries %}
