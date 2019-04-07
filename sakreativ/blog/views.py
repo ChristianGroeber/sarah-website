@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, UeberMich, MyImage, Gallery
-from sakreativ.settings import MEDIA_ROOT
 # Create your views here.
 
 
@@ -25,4 +24,4 @@ def gallery(request, gallery=None):
     list_images = Gallery.objects.get(title=gallery).images.all()
     num_images = len(list_images)/2 if len(list_images) % 2 == 0 else len(list_images)/2 + 1
     galleries = Gallery.objects.all()
-    return render(request, 'blog/gallery.html', {'list_images': list_images, 'MEDIA_ROOT': MEDIA_ROOT, 'num_images': num_images, 'galleries': galleries})
+    return render(request, 'blog/gallery.html', {'list_images': list_images, 'num_images': num_images, 'galleries': galleries})
