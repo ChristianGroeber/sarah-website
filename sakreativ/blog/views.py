@@ -4,7 +4,7 @@ from .models import Post, UeberMich, MyImage, Gallery
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-date_posted')
     featured_post = Post.objects.filter(featured=True)
     return render(request, 'blog/index.html', {'posts': posts, 'featured_post': featured_post})
 
