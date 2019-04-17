@@ -17,7 +17,7 @@ def index(request):
     ctx = {
         'customer': customer,
         'shopping_cart': shopping_cart,
-        'itmes': items
+        'items': items
     }
     print(items)
     message = get_template('emails/order_confirmation.html').render(ctx)
@@ -25,6 +25,13 @@ def index(request):
     msg.content_subtype = 'html'
     msg.send()
     response = render(request, 'emails/sender.html')
-    response.delete_cookie('shopping_cart')
-    response.delete_cookie('customer')
+    # response.delete_cookie('shopping_cart')
+    # response.delete_cookie('customer')
+
+    subject = 'Neue Bestellung von ' + customer.Vorname
+    to = ['sara.bahr@gmx.ch']
+    message = get_template('emails/new_order.html').render(ctx)
+    msg2 = EmailMessage(subject, message, to=to, from_email=mail_from)
+    msg2.content_subtype = 'html'
+    msg2.send()
     return response

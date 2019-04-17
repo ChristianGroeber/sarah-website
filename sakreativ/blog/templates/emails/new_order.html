@@ -1,0 +1,13 @@
+<h5>Neue Bestellung</h5>
+<p>{{ customer.Vorname }} bestellte
+{% for item in items %}
+    {{ item.amount }} x {{ item.item.title }}
+    {% endfor %}
+</p>
+<h5>Kunden Informationen</h5>
+{{ customer.Vorname }}
+{{ customer.name }}<br>
+{{ customer.Adresse }}<br>
+{{ customer.Wohnort }}<br>
+{{ customer.PLZ }}<br>
+{{ customer.email_address }}</p>
