@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, UeberMich, MyImage, Gallery
+from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart
 # Create your views here.
 
 
@@ -28,4 +28,21 @@ def gallery(request, gallery=None):
 
 
 def shop(request):
-    return render(request, 'blog/shop.html')
+    products = Product.objects.all()
+    price = 0
+    if 'shopping_cart' in request.COOKIES:
+        items = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart']).items.all()
+        for item in items:
+            price += item.price
+    return render(request, 'blog/shop.html', {'products': products, 'price': price})
+
+
+def add(request, product):
+    response = redirect('shop')
+    if 'shopping_cart' in request.COOKIES:
+        cart = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
+    else:
+        cart = ShoppingCart.objects.create()
+        response.set_cookie('shopping_cart', value=cart.id)
+    cart.items.add(Product.objects.get(pk=product))
+    return response

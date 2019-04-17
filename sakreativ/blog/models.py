@@ -62,3 +62,20 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Product(models.Model):
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=500)
+    price = models.IntegerField()
+    image = models.ImageField(upload_to='shop')
+
+    def __str__(self):
+        return self.title
+
+
+class ShoppingCart(models.Model):
+    items = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return str(self.id)

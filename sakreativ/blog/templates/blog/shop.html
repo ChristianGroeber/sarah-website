@@ -6,20 +6,39 @@
 {% block title %}Sakrea - Shop{% endblock %}
 
 {% block content %}
+<div class="shopping-cart row">
+    <div class="col-sm-2">
+        <p>Preis: CHF {{ price }}.-</p>
+    </div>
+    <div class="col-sm-2">
+        <a href="checkout/">Bestellen</a>
+    </div>
+</div>
 <div class='row'>
+    {% for product in products %}
     <div class='col-sm-4 shop-element white-link rounded'>
         <a href='/' class='white-link '>
             <div class='row'>
                 <div class='col-sm-6'>
-                    <h1 class='shop-element-title'>Element 2</h1>
-                    <p class='shop-element-description'>Lorem ipsum dolor sit amet, consetetur sadipscing </p>
-                    <p class='shop-price'>CHF 10</p>
+                    <h1 class='shop-element-title'>{{ product.title }}</h1>
+                    <p class='shop-element-description'>{{ product.description|slice:':50' }}</p>
                 </div>
                 <div class='col-sm-6'>
-                    <img src='{% static 'img/Download.png' %}' class='shop-image'>
+                    <img src='{{ product.image.url }}' class='shop-image'>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-6'>
+                    <p class='shop-price'>CHF {{ product.price }}.-</p>
+                </div>
+                <div class='col-sm-6'>
+                    <a href='{{ product.id }}/add/'>
+                        <img src='{% static "img/shopping-cart.png" %}' height='30'>
+                    </a>
                 </div>
             </div>
         </a>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}
