@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sakrea2019@gmail.com'
-pwd = open(SETTINGS_PATH + '\\sakreativ/pwd.txt', 'r')
+pwd = open(os.path.join(SETTINGS_PATH, 'sakreativ', 'pwd.txt', ), 'r')
 EMAIL_HOST_PASSWORD = pwd.readline()
 pwd.close()
 EMAIL_USE_TLS = True
