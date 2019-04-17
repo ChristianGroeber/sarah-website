@@ -98,3 +98,15 @@ class ShoppingCart(models.Model):
             price += item.price()
         return price
 
+
+class Customer(models.Model):
+    name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, name='Vorname')
+    address = models.CharField(max_length=200, name='Adresse')
+    town = models.CharField(max_length=50, name='Wohnort')
+    zip_code = models.IntegerField(name='PLZ')
+    country = models.CharField(max_length=50, default='Schweiz', name='Land')
+    email_address = models.EmailField()
+
+    def __str__(self):
+        return str(self.first_name) + " " + str(self.name)

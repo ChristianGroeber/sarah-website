@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block description %}Sakrea Shop{% endblock %}
+
+{% block title %}Sakrea - Shop Checkout{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Absenden und bestellen</button>
+</form>
+{% endblock %}

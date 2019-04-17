@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
+from .forms import CustomerForm
 from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart, AddedProduct
 # Create your views here.
 
@@ -62,4 +64,14 @@ def checkout(request):
     shopping_cart = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
     items = shopping_cart.items.all()
     print(items)
-    return render(request, 'blog/shop_checkout.html', {'items': items})
+    return render(request, 'blog/shop_checkout.html', {'items': items, 'shopping_cart': shopping_cart})
+
+
+def address(request):
+    form = CustomerForm()
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save()
+            return redirect('shop')
+    return render(request, 'blog/address.html', {'form': form})
