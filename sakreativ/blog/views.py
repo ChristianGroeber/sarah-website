@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart
+from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart, AddedProduct
 # Create your views here.
 
 
@@ -31,9 +31,8 @@ def shop(request):
     products = Product.objects.all()
     price = 0
     if 'shopping_cart' in request.COOKIES:
-        items = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart']).items.all()
-        for item in items:
-            price += item.price
+        items = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
+        price = items.price()
     return render(request, 'blog/shop.html', {'products': products, 'price': price})
 
 
@@ -44,7 +43,20 @@ def add(request, product):
     else:
         cart = ShoppingCart.objects.create()
         response.set_cookie('shopping_cart', value=cart.id)
-    cart.items.add(Product.objects.get(pk=product))
+    items = cart.items.all()
+    print(items)
+    product_to_add = Product.objects.get(pk=product)
+    for item in items:
+        print(str(item), product_to_add.title)
+        if str(item) is str(product_to_add.title):
+            item.amount = int(item.amount) + 1
+            break
+    else:
+        added_product = AddedProduct.objects.create(item=product_to_add)
+        cart.items.add(added_product)
+    if not items:
+        added_product = AddedProduct.objects.create(item=product_to_add)
+        cart.items.add(added_product)
     return response
 
 

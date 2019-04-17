@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import ForeignKey
 from froala_editor.fields import FroalaField
 from PIL import Image
 
@@ -74,8 +75,26 @@ class Product(models.Model):
         return self.title
 
 
+class AddedProduct(models.Model):
+    item = ForeignKey(Product, on_delete=models.CASCADE)
+    amount = models.IntegerField(default=1)
+
+    def __str__(self):
+        return str(self.item.title)
+
+    def price(self):
+        return int(self.item.price) * int(self.amount)
+
+
 class ShoppingCart(models.Model):
-    items = models.ManyToManyField(Product)
+    items = models.ManyToManyField(AddedProduct)
 
     def __str__(self):
         return str(self.id)
+
+    def price(self):
+        price = 0
+        for item in self.items.all():
+            price += item.price()
+        return price
+
