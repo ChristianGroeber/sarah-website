@@ -1,9 +1,25 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block description %}Sakrea Shop{% endblock %}
 
 {% block title %}Sakrea - Shop{% endblock %}
 
 {% block content %}
-
+<div class='row'>
+    <div class='col-sm-4 shop-element white-link rounded'>
+        <a href='/' class='white-link '>
+            <div class='row'>
+                <div class='col-sm-6'>
+                    <h1 class='shop-element-title'>Element 2</h1>
+                    <p class='shop-element-description'>Lorem ipsum dolor sit amet, consetetur sadipscing </p>
+                    <p class='shop-price'>CHF 10</p>
+                </div>
+                <div class='col-sm-6'>
+                    <img src='{% static 'img/Download.png' %}' class='shop-image'>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
 {% endblock %}

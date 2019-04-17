@@ -1,7 +1,25 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
+
+.shop-element{
+  margin: 1rem;
+}
+
+.shop-element-title{
+  font-size: 1.5rem;
+}
+
 *{
     -webkit-transition: box-shadow 0.2s ease;
+}
+
+.shop-image{
+  width: 100%;
+}
+
+.shop-price{
+  color: #4b97a4;
+  font-weight: bold;
 }
 
 a:hover{
