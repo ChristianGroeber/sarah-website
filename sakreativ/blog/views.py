@@ -73,8 +73,9 @@ def address(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
-            form.save()
-            response = redirect('send_mail')
+            customer = form.save()
+            response = redirect('/send/')
             # response.delete_cookie('shopping_cart')
+            response.set_cookie('customer', value=customer.id)
             return response
     return render(request, 'blog/address.html', {'form': form})

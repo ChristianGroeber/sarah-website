@@ -1,22 +1,30 @@
 from django.shortcuts import render
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
-from django.template import Context
+from blog.models import Customer, ShoppingCart
 # Create your views here.
 
 
 def index(request):
-    subject = 'hello from'
+    customer = Customer.objects.get(pk=request.COOKIES['customer'])
+    shopping_cart = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
+    print(customer.name)
+    subject = 'Besten Dank für deine Bestellung'
     mail_from = 'sakrea2019@gmail.com'
 
-    to = ['swiss8oy.chg@gmail.com']
+    to = [customer.email_address]
+    items = shopping_cart.items.all()
     ctx = {
-        'user': 'buddy',
-        'something': 'something',
+        'customer': customer,
+        'shopping_cart': shopping_cart,
+        'itmes': items
     }
-
-    message = get_template('emails/test_template.html').render(ctx)
+    print(items)
+    message = get_template('emails/order_confirmation.html').render(ctx)
     msg = EmailMessage(subject, message, to=to, from_email=mail_from)
     msg.content_subtype = 'html'
     msg.send()
-    return render(request, 'emails/sender.html')
+    response = render(request, 'emails/sender.html')
+    response.delete_cookie('shopping_cart')
+    response.delete_cookie('customer')
+    return response

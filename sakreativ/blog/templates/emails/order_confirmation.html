@@ -1,0 +1,21 @@
+<h1>Lieber {{ customer.Vorname }}</h1>
+<p>Besten Dank für deine Bestellung von </p>
+{% for item in items %}
+<div class="row">
+    <div class="checkout-item col-sm-8">
+        <h1 class="shop-element-title">{{ item.item.title }}</h1>
+        <p>{{ item.amount }}x für je CHF {{ item.item.price }}.-</p>
+    </div>
+    <div class="col-sm-4">
+        <p class="shop-price">CHF {{ item.price }}.-</p>
+    </div>
+</div>
+<hr>
+{% endfor %}
+<div class="row">
+    <div class="col-sm-8"><b>TOTAL:</b></div>
+    <div class="col-sm-4">
+        <p class="shop-price">CHF {{ shopping_cart.price }}.-</p>
+    </div>
+</div>
+<p>Freundliche Grüsse <br>Sara</p>
