@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import CustomerForm
 from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart, AddedProduct
+import smtplib
 # Create your views here.
 
 
@@ -72,7 +73,7 @@ def address(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
-            customer = form.save()
+            form.save()
             response = redirect('/')
             response.delete_cookie('shopping_cart')
             return response
