@@ -48,13 +48,11 @@ def add(request, product):
     product_to_add = Product.objects.get(pk=product)
     for item in items:
         print(str(item), product_to_add.title)
-        if str(item) is str(product_to_add.title):
-            item.amount = int(item.amount) + 1
+        if str(item) == str(product_to_add.title):
+            item.amount += + 1
+            item.save()
             break
     else:
-        added_product = AddedProduct.objects.create(item=product_to_add)
-        cart.items.add(added_product)
-    if not items:
         added_product = AddedProduct.objects.create(item=product_to_add)
         cart.items.add(added_product)
     return response
@@ -63,4 +61,5 @@ def add(request, product):
 def checkout(request):
     shopping_cart = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
     items = shopping_cart.items.all()
+    print(items)
     return render(request, 'blog/shop_checkout.html', {'items': items})
