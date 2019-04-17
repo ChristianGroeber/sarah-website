@@ -73,5 +73,7 @@ def address(request):
         form = CustomerForm(request.POST)
         if form.is_valid():
             customer = form.save()
-            return redirect('shop')
+            response = redirect('/')
+            response.delete_cookie('shopping_cart')
+            return response
     return render(request, 'blog/address.html', {'form': form})
