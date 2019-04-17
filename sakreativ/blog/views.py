@@ -25,3 +25,7 @@ def gallery(request, gallery=None):
     num_images = len(list_images)/2 if len(list_images) % 2 == 0 else len(list_images)/2 + 1
     galleries = Gallery.objects.all()
     return render(request, 'blog/gallery.html', {'list_images': list_images, 'num_images': num_images, 'galleries': galleries})
+
+
+def shop(request):
+    return render(request, 'blog/shop.html')
