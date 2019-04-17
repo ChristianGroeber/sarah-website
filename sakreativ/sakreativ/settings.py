@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['sakrea2019.pythonanywhere.com', '127.0.0.1', 'www.sakrea.ch', 
 INSTALLED_APPS = [
     'froala_editor',
     'blog',
+    'emails',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +135,12 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = [
     os.path.join(SETTINGS_PATH, "static"),
 ]
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sakrea2019@gmail.com'
+pwd = open(SETTINGS_PATH + '\\sakreativ/pwd.txt', 'r')
+EMAIL_HOST_PASSWORD = pwd.readline()
+pwd.close()
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
