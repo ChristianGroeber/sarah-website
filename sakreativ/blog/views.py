@@ -46,3 +46,9 @@ def add(request, product):
         response.set_cookie('shopping_cart', value=cart.id)
     cart.items.add(Product.objects.get(pk=product))
     return response
+
+
+def checkout(request):
+    shopping_cart = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
+    items = shopping_cart.items.all()
+    return render(request, 'blog/shop_checkout.html', {'items': items})
