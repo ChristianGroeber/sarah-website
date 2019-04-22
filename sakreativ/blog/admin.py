@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, UeberMich, MyImage, Page, Gallery, Product, ShoppingCart, AddedProduct
+from .models import Post, UeberMich, MyImage, Page, Gallery, Product, ShoppingCart, AddedProduct, ShopCategory
 # Register your models here.
 
 
@@ -11,3 +11,4 @@ admin.site.register(Gallery)
 admin.site.register(Product)
 admin.site.register(ShoppingCart)
 admin.site.register(AddedProduct)
+admin.site.register(ShopCategory)

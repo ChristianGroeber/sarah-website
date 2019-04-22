@@ -65,11 +65,20 @@ class Gallery(models.Model):
         return self.title
 
 
+class ShopCategory(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=500, blank=True, verbose_name='Beschreibung')
+
+    def __str__(self):
+        return self.title
+
+
 class Product(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=500)
     price = models.IntegerField()
     image = models.ImageField(upload_to='shop')
+    category = ForeignKey(ShopCategory, on_delete=models.CASCADE, verbose_name='Kategorie')
 
     def __str__(self):
         return self.title
