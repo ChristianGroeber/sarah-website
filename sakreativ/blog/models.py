@@ -9,11 +9,11 @@ from PIL import Image
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=300, default='Lies meinen neuesten Beitrag')
-    date_posted = models.DateTimeField()
+    description = models.CharField(max_length=300, default='Lies meinen neuesten Beitrag', verbose_name='Beschreibung')
+    date_posted = models.DateTimeField(verbose_name='Datum geposted')
     text = FroalaField()
-    main_image = models.ImageField(blank=True)
-    featured = models.BooleanField(default=False)
+    main_image = models.ImageField(blank=True, verbose_name='Hauptbild')
+    featured = models.BooleanField(default=False, verbose_name='Hervorgehoben')
 
     def __str__(self):
         return self.title
@@ -35,16 +35,16 @@ class UeberMich(models.Model):
 class Page(models.Model):
     title = models.CharField(max_length=50)
     link = models.CharField(max_length=200)
-    show_on_page = models.BooleanField(default=True)
-    only_show_to_me = models.BooleanField(default=False)
+    show_on_page = models.BooleanField(default=True, verbose_name='Auf der Seite anzeigen')
+    only_show_to_me = models.BooleanField(default=False, verbose_name='Nur dem Admin zeigen')
 
     def __str__(self):
         return self.title
 
 
 class MyImage(models.Model):
-    image = models.ImageField(upload_to='gallery_picture')
-    description = models.CharField(max_length=100, default='image')
+    image = models.ImageField(upload_to='gallery_picture', verbose_name='Bild')
+    description = models.CharField(max_length=100, default='image', verbose_name='Beschreibung')
 
     def __str__(self):
         return self.description
@@ -58,8 +58,8 @@ class MyImage(models.Model):
 
 class Gallery(models.Model):
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=300, blank=True)
-    images = models.ManyToManyField(MyImage)
+    description = models.CharField(max_length=300, blank=True, verbose_name='Beschreibung')
+    images = models.ManyToManyField(MyImage, verbose_name='Bilder')
 
     def __str__(self):
         return self.title
@@ -75,9 +75,9 @@ class ShopCategory(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=30)
-    description = models.CharField(max_length=500)
-    price = models.IntegerField()
-    image = models.ImageField(upload_to='shop')
+    description = models.CharField(max_length=500, verbose_name='Beschreibung', blank=True)
+    price = models.IntegerField(verbose_name='Preis')
+    image = models.ImageField(upload_to='shop', verbose_name='Bild')
     category = ForeignKey(ShopCategory, on_delete=models.CASCADE, verbose_name='Kategorie')
 
     def __str__(self):
