@@ -15,30 +15,46 @@
     </div>
 </div>
 <div class='row'>
-    {% for product in products %}
-    <div class='col-sm-4 shop-element white-link rounded'>
-        <a href='/' class='white-link '>
-            <div class='row'>
-                <div class='col-sm-6'>
-                    <h1 class='shop-element-title'>{{ product.title }}</h1>
-                    <p class='shop-element-description'>{{ product.description|slice:':50' }}</p>
-                </div>
-                <div class='col-sm-6'>
-                    <img src='{{ product.image.url }}' class='shop-image'>
-                </div>
-            </div>
-            <div class="row">
-                <div class='col-sm-6'>
-                    <p class='shop-price'>CHF {{ product.price }}.-</p>
-                </div>
-                <div class='col-sm-6'>
-                    <a href='{{ product.id }}/add/'>
-                        <img src='{% static "img/shopping-cart.png" %}' height='30'>
-                    </a>
-                </div>
-            </div>
-        </a>
+    <div class="col-sm-4">
+        {% for categorie in categories %}
+            <a href="
+            {% if category %}
+            ../{{ categorie.id }}
+            {% else %}
+            {{ categorie.id }}
+            {% endif %}
+            ">{{ categorie }}</a>
+            <br>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <div class="col-sm-8">
+        <div class='row'>
+            {% for product in products %}
+            <div class='col-sm-4 shop-element white-link rounded'>
+                <a href='/' class='white-link '>
+                    <div class='row'>
+                        <div class='col-sm-6'>
+                            <h1 class='shop-element-title'>{{ product.title }}</h1>
+                            <p class='shop-element-description'>{{ product.description|slice:':50' }}</p>
+                        </div>
+                        <div class='col-sm-6'>
+                            <img src='{{ product.image.url }}' class='shop-image'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <p class='shop-price'>CHF {{ product.price }}.-</p>
+                        </div>
+                        <div class='col-sm-6'>
+                            <a href='{{ product.id }}/add/'>
+                                <img src='{% static "img/shopping-cart.png" %}' height='30'>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}

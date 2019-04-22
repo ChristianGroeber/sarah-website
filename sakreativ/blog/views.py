@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import CustomerForm
-from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart, AddedProduct
+from .models import Post, UeberMich, MyImage, Gallery, Product, ShoppingCart, AddedProduct, ShopCategory
 import smtplib
 # Create your views here.
 
@@ -30,13 +30,17 @@ def gallery(request, gallery=None):
     return render(request, 'blog/gallery.html', {'list_images': list_images, 'num_images': num_images, 'galleries': galleries})
 
 
-def shop(request):
+def shop(request, category=None):
     products = Product.objects.all()
     price = 0
+    categories = ShopCategory.objects.all()
+    print(categories)
+    if category:
+        products = Product.objects.filter(category=category)
     if 'shopping_cart' in request.COOKIES:
         items = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
         price = items.price()
-    return render(request, 'blog/shop.html', {'products': products, 'price': price})
+    return render(request, 'blog/shop.html', {'products': products, 'price': price, 'categories': categories, 'category': category})
 
 
 def add(request, product):
