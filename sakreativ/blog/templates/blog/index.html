@@ -5,35 +5,44 @@
 {% block content %}
 {% if featured_post %}
 <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-          <h1 class="display-4 font-italic">{{ featured_post.title}}</h1>
-          <p class="lead my-3">{{ featured_post.description }}</p>
-          <p class="lead mb-0"><a href="blog/{{ featured_post.id }}/" class="text-white font-weight-bold">Weiter lesen...</a></p>
-        </div>
-      </div>
-{% endif %}
-      <div class="row">
-        <div class="col-md-8 blog-main">
-          {% for post in posts %}
-          {% if not post.featured %}
-          <div class="row">
-          <a href="blog/{{ post.id }}/" class="white-link post">
-            <div class="blog-post rounded p-3">
-              <div class="col-sm-6">
-              <h2 class="blog-post-title">{{ post.title }}</h2>
-              <p class="blog-post-meta">{{ post.date_posted|date:'d.m.Y' }}</p>
-                  <p>{{ post.description|safe }}</p>
-              </div>
-              {% if post.main_image %}
-                <img class="col-sm-4" src="{{post.main_image.url}}">
-              {% endif %}
-            </div><!-- /.blog-post -->
-            </a>
-          </div>
-          {% endif %}
-            {% endfor %}
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 class="display-4 font-italic">{{ featured_post.title }}</h1>
+      <p class="lead my-3">{{ featured_post.description }}</p>
+      <p class="lead mb-0"><a href="blog/{{ featured_post.id }}/" class="text-white font-weight-bold">Weiter
+          lesen...</a></p>
 
-        </div><!-- /.blog-main -->
-      </div>
+    </div>
+    {% if featured_post %}
+    <div class="col-sm-4">
+      <img src="{{ featured_post.main_image.url }}">
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+<div class="row">
+  <div class="col-md-8 blog-main">
+    {% for post in posts %}
+    {% if not post.featured %}
+    <div class="row">
+      <a href="blog/{{ post.id }}/" class="white-link post">
+        <div class="blog-post rounded p-3">
+          <div class="col-sm-6">
+            <h2 class="blog-post-title">{{ post.title }}</h2>
+            <p class="blog-post-meta">{{ post.date_posted|date:'d.m.Y' }}</p>
+            <p>{{ post.description|safe }}</p>
+          </div>
+          {% if post.main_image %}
+          <img class="col-sm-4" src="{{post.main_image.url}}">
+          {% endif %}
+        </div><!-- /.blog-post -->
+      </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+  </div><!-- /.blog-main -->
+</div>
 
 {% endblock %}

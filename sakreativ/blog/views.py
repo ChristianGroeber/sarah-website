@@ -8,7 +8,10 @@ import smtplib
 
 def index(request):
     posts = Post.objects.all().order_by('-date_posted')
-    featured_post = Post.objects.filter(featured=True)
+    featured_post = None
+    for post in reversed(posts):
+        if post.featured:
+            featured_post = post
     return render(request, 'blog/index.html', {'posts': posts, 'featured_post': featured_post})
 
 
