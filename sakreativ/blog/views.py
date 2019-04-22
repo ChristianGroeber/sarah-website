@@ -34,7 +34,6 @@ def shop(request, category=None):
     products = Product.objects.all()
     price = 0
     categories = ShopCategory.objects.all()
-    print(categories)
     if category:
         products = Product.objects.filter(category=category)
     if 'shopping_cart' in request.COOKIES:
@@ -51,7 +50,6 @@ def add(request, product):
         cart = ShoppingCart.objects.create()
         response.set_cookie('shopping_cart', value=cart.id)
     items = cart.items.all()
-    print(items)
     product_to_add = Product.objects.get(pk=product)
     for item in items:
         print(str(item), product_to_add.title)
