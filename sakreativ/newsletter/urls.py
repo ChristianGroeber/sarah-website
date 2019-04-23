@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
+    path('unsubscribe/<unsubscribe_id>/', views.unsubscribe),
 ]
