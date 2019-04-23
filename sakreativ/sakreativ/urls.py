@@ -22,6 +22,7 @@ from . import settings
 
 urlpatterns = [
     path('', include('blog.urls')),
+    path('newsletter/', include('newsletter.urls')),
     path('admin/', admin.site.urls, name='admin'),
     path('send/', include('emails.urls'), name='send_mail'),
     url(r'^froala_editor/', include('froala_editor.urls')),
