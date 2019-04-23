@@ -5,4 +5,8 @@ from django.shortcuts import render, redirect
 
 
 def index(request):
-    return redirect('/')
+    if str(request.user) is 'AnonymousUser':
+        print(request.user)
+        return redirect('index')
+    print(request.user)
+    return render(request, 'newsletter/index.html')
