@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['sakrea2019.pythonanywhere.com', '127.0.0.1', 'www.sakrea.ch', 
 # Application definition
 
 INSTALLED_APPS = [
+    'newsletter',
     'froala_editor',
     'blog',
     'emails',

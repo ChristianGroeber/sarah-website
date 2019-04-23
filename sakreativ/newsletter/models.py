@@ -6,12 +6,13 @@ import random
 # Create your models here.
 
 
-class Subscribers(Model):
+class Subscriber(Model):
     email_address = CharField(max_length=100, verbose_name='Email Adresse')
-    unsubscribe_id = 0
+    unsubscribe_id = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.email_address
 
     def create_unsubscribe_id(self):
-        self.unsubscribe_id = int(self.id) * random.random
+        rnd = random.randint(1, 10)
+        self.unsubscribe_id = int(self.id) * rnd
