@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from blog.models import Customer, ShoppingCart
+from newsletter.models import Newsletter, Subscriber
 # Create your views here.
 
 
@@ -35,3 +36,10 @@ def index(request):
     msg2.content_subtype = 'html'
     msg2.send()
     return response
+
+
+def send_newsletter(request, newsletter_id):
+    news = Newsletter.objects.get(pk=newsletter_id)
+    news.sent = True
+    news.save()
+    return redirect('newsletter')

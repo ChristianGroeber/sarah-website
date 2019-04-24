@@ -12,4 +12,4 @@ class SubscriptionForm(models.ModelForm):
 class CreateNewsletter(models.ModelForm):
     class Meta:
         model = Newsletter
-        exclude = ()
+        exclude = ('sent', )

@@ -12,7 +12,8 @@
         {% if newsletter.sent %}
         Versendet
         {% else %}
-        nicht versendet
+        nicht versendet<br>
+        <a href="../send/newsletter/{{ newsletter.id }}/">Versenden</a>
         {% endif %}<br>
         <a href="delete/{{ newsletter.id }}/">Löschen</a><br>
         <hr>
