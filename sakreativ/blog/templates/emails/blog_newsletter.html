@@ -3,3 +3,9 @@
 {{ post.title }}
 {{ post.text|safe|slice:':200' }}<a href="https://www.sakrea.ch/blog/{{ post.id }}/">...weiter lesen</a>
 <p>Freundliche Grüsse <br>Sara</p>
+<style>
+    a.unsubscribe_link{
+        font-size: 10px;
+    }
+</style>
+<a class="unsubscribe_link" href="127.0.0.1:8000/newsletter/unsubscribe/{{ subscriber.unsubscribe_id }}">Ich möchte keine Mails mehr erhalten</a>
