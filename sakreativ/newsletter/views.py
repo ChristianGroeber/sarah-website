@@ -23,3 +23,10 @@ def unsubscribe(request, unsubscribe_id):
     except Exception:
         print('no user with id' + str(unsubscribe_id))
     return render(request, 'newsletter/unsubscribe_confirmation.html')
+
+
+def subscribe(request, subscriber_email):
+    sub = Subscriber(email_address=subscriber_email)
+    sub.save()
+    print(sub)
+    return redirect('/')
