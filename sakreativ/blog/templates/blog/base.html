@@ -56,6 +56,15 @@
     };
 
   </script>
+  <script>
+    $(document).ready(function(){
+      $('.subscribe').click(function(){
+        var mail = document.getElementById("subscription-email").value;
+        console.log(mail);
+        window.location.replace('/newsletter/subscribe/' + mail);
+    });
+    })
+  </script>
 </head>
 
 <body>
@@ -84,6 +93,10 @@
     </main>
 
     <footer class="blog-footer">
+      <h4>Für meinen Newsletter anmelden</h4>
+      <label for="subscription-email">Email Adresse</label>
+      <input type="text" class="subscription-email" id="subscription-email">
+      <p class="subscribe ">Anmelden</p>
       <a href="#">Zurück nach oben</a>
       </p>
     </footer>

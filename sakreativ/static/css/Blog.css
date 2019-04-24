@@ -1,6 +1,11 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
 
+p.subscribe:hover{
+    cursor: pointer;
+}
+
+
 .shop-element{
   margin: 1rem;
 }
