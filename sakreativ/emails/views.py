@@ -42,4 +42,16 @@ def send_newsletter(request, newsletter_id):
     news = Newsletter.objects.get(pk=newsletter_id)
     news.sent = True
     news.save()
+    subscribers = Subscriber.objects.filter(subscribed=True)
+    to = []
+    for subscriber in subscribers:
+        to.append(subscriber.email_address)
+    print(to)
+    subject = 'Neuer Blog Beitrag: ' + news.blog_post.title
+    mail_from = 'sakrea2019@gmail.com'
+    ctx = {'post': news.blog_post}
+    message = get_template('emails/blog_newsletter.html').render(ctx)
+    msg = EmailMessage(subject, message, to=to, from_email=mail_from)
+    msg.content_subtype = 'html'
+    msg.send()
     return redirect('newsletter')
