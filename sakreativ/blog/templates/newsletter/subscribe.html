@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Sakrea - Subscribe {% endblock %}
+
+{% block content %}
+<h3>Melden Sie sich hier für meinen Newsletter an.</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Anmelden</button>
+</form>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Subscriber
+from .forms import SubscriptionForm
 
 # Create your views here.
 
@@ -25,8 +26,12 @@ def unsubscribe(request, unsubscribe_id):
     return render(request, 'newsletter/unsubscribe_confirmation.html')
 
 
-def subscribe(request, subscriber_email):
-    sub = Subscriber(email_address=subscriber_email)
-    sub.save()
-    print(sub)
-    return redirect('/')
+def subscribe(request):
+    form = SubscriptionForm()
+    if request.method == 'POST':
+        form = SubscriptionForm(request.POST)
+        print(form)
+        sub = Subscriber(email_address=form.cleaned_data['email_address'])
+        sub.save()
+        return redirect('/')
+    return render(request, 'newsletter/subscribe.html', {'form': form})
