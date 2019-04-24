@@ -1,5 +1,5 @@
 <h1>Lieber Abonnent</h1>
 <p>Es gibt einen neuen Blog Beitrag auf <a href="www.sakrea.ch">sakrea.ch</a></p>
 {{ post.title }}
-{{ post.text|safe }}
+{{ post.text|safe|slice:':200' }}<a href="https://www.sakrea.ch/blog/{{ post.id }}/">...weiter lesen</a>
 <p>Freundliche Grüsse <br>Sara</p>
