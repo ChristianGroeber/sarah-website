@@ -35,3 +35,9 @@ def subscribe(request):
         sub.save()
         return redirect('/')
     return render(request, 'newsletter/subscribe.html', {'form': form})
+
+
+def subscribe_from_url(request, subscriber_mail):
+    sub = Subscriber(email_address=subscriber_mail)
+    sub.save()
+    return redirect('/')
