@@ -1,5 +1,6 @@
 from django.db import models
-from django.db.models import Model, CharField
+from django.db.models import Model, CharField, ForeignKey
+from blog.models import Post
 import random
 
 
@@ -18,3 +19,10 @@ class Subscriber(Model):
         rnd = random.randint(1, 10)
         self.unsubscribe_id = self.id * rnd
         self.save()
+
+
+class Newsletter(Model):
+    blog_post = ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.blog_post.from_fields.date_posted

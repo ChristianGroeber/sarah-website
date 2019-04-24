@@ -13,7 +13,7 @@ def index(request):
         if not subscriber.unsubscribe_id:
             subscriber.create_unsubscribe_id()
     print(subscribers)
-    return render(request, 'newsletter/index.html')
+    return render(request, 'newsletter/index.html', {'subscribers': subscribers})
 
 
 def unsubscribe(request, unsubscribe_id):
