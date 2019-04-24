@@ -1,6 +1,19 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
 
+.add-to-shopping-cart{
+    background-color: #6FB8BE;
+    margin-right: 2.5px;
+    margin-left: 2.5px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.add-to-shopping-cart:hover{
+    cursor:pointer;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
 .change-amount{
     display: box;
     padding: 2.5px;

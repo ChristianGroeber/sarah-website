@@ -30,8 +30,7 @@
     <div class="col-sm-8">
         <div class='row'>
             {% for product in products %}
-            <div class='col-sm-4 shop-element white-link rounded'>
-                <a href='/' class='white-link '>
+            <div class='col-sm-4 shop-element'>
                     <div class='row'>
                         <div class='col-sm-6'>
                             <h1 class='shop-element-title'>{{ product.title }}</h1>
@@ -45,13 +44,14 @@
                         <div class='col-sm-6'>
                             <p class='shop-price'>CHF {{ product.price }}.-</p>
                         </div>
-                        <div class='col-sm-6'>
-                            <a href='{{ product.id }}/add/'>
-                                <img src='{% static "img/shopping-cart.png" %}' height='30'>
-                            </a>
-                        </div>
                     </div>
-                </a>
+                        <a href='{{ product.id }}/add/'>
+                    <div class='row add-to-shopping-cart'>
+                        <div class="col-sm-12">
+                            <img src='{% static "img/shopping-cart.png" %}' height='30'>
+                            </div>
+                    </div>
+                        </a>
             </div>
             {% endfor %}
         </div>
