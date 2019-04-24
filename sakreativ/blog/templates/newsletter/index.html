@@ -6,7 +6,15 @@
 <h1>Newsletter Administration</h1>
 <div class="row">
     <div class="col-sm-6">
-
+        {% for newsletter in newsletters %}
+        <b>{{ newsletter }}</b> {{ newsletter.blog_post.date_posted }} <a href="delete/{{ newsletter.id }}/">Löschen</a><br>
+        {% endfor %}
+        <b>Neuen Newsletter erstellen</b>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Speichern</button>
+        </form>
     </div>
     <div class="col-sm-6">
         <h2>Abonnenten</h2>

@@ -25,4 +25,4 @@ class Newsletter(Model):
     blog_post = ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.blog_post.from_fields.date_posted
+        return str(self.blog_post)
