@@ -42,11 +42,17 @@ def shop(request, category=None):
     if 'shopping_cart' in request.COOKIES:
         items = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
         price = items.price()
+        for item in items:
+            if item.amount == 0:
+                item.delete()
     return render(request, 'blog/shop.html', {'products': products, 'price': price, 'categories': categories, 'category': category})
 
 
-def add(request, product):
-    response = redirect('shop')
+def add(request, product, operation):
+    if 'checkout' in str(request.path):
+        response = redirect('/shop/checkout')
+    else:
+        response = redirect('shop')
     if 'shopping_cart' in request.COOKIES:
         cart = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
     else:
@@ -57,7 +63,10 @@ def add(request, product):
     for item in items:
         print(str(item), product_to_add.title)
         if str(item) == str(product_to_add.title):
-            item.amount += + 1
+            if operation == 'add':
+                item.amount += 1
+            else:
+                item.amount -= 1
             item.save()
             break
     else:
@@ -80,7 +89,6 @@ def address(request):
         if form.is_valid():
             customer = form.save()
             response = redirect('/send/')
-            # response.delete_cookie('shopping_cart')
             response.set_cookie('customer', value=customer.id)
             return response
     return render(request, 'blog/address.html', {'form': form})

@@ -7,10 +7,21 @@
 
 {% block content %}
 {% for item in items %}
+<script>
+    console.log('{{ item.id }}');
+    $(document).ready(function(){
+        $('.more.{{ item.item.id }}').click(function(){
+            window.location.replace('../../shop/checkout/{{ item.item.id }}/add/');
+        });
+        $('.less.{{ item.item.id }}').click(function(){
+            window.location.replace('../../shop/checkout/{{ item.item.id }}/remove/');
+        });
+    })
+</script>
 <div class="row">
     <div class="checkout-item col-sm-8">
         <h1 class="shop-element-title">{{ item.item.title }}</h1>
-        <p>{{ item.amount }}x für je CHF {{ item.item.price }}.-</p>
+        <p><span class="less {{ item.item.id }} change-amount">-</span>{{ item.amount }}x <span class="more {{ item.item.id }} change-amount">+</span> für je CHF {{ item.item.price }}.-</p>
     </div>
     <div class="col-sm-4">
         <p class="shop-price">CHF {{ item.price }}.-</p>

@@ -1,6 +1,17 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
 
+.change-amount{
+    display: box;
+    padding: 2.5px;
+    border:1px solid rgba(0,0,0,0.5);
+}
+
+.change-amount:hover{
+    cursor: pointer;
+}
+
+
 p.subscribe:hover{
     cursor: pointer;
 }
