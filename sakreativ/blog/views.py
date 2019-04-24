@@ -42,7 +42,7 @@ def shop(request, category=None):
     if 'shopping_cart' in request.COOKIES:
         items = ShoppingCart.objects.get(pk=request.COOKIES['shopping_cart'])
         price = items.price()
-        for item in items:
+        for item in items.items.all():
             if item.amount == 0:
                 item.delete()
     return render(request, 'blog/shop.html', {'products': products, 'price': price, 'categories': categories, 'category': category})
