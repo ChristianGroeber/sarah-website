@@ -24,6 +24,8 @@ def index(request):
 
 
 def delete_newsletter(request, newsletter_id):
+    if str(request.user) is 'AnonymousUser':
+        return redirect('index')
     news = Newsletter.objects.get(pk=newsletter_id)
     news.delete()
     return redirect('newsletter')

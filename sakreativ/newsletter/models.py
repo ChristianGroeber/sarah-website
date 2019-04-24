@@ -23,6 +23,7 @@ class Subscriber(Model):
 
 class Newsletter(Model):
     blog_post = ForeignKey(Post, on_delete=models.CASCADE)
+    sent = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.blog_post)

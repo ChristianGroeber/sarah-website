@@ -7,7 +7,15 @@
 <div class="row">
     <div class="col-sm-6">
         {% for newsletter in newsletters %}
-        <b>{{ newsletter }}</b> {{ newsletter.blog_post.date_posted }} <a href="delete/{{ newsletter.id }}/">Löschen</a><br>
+        <b>{{ newsletter }}</b> <br>
+        {{ newsletter.blog_post.date_posted }}<br>
+        {% if newsletter.sent %}
+        Versendet
+        {% else %}
+        nicht versendet
+        {% endif %}<br>
+        <a href="delete/{{ newsletter.id }}/">Löschen</a><br>
+        <hr>
         {% endfor %}
         <b>Neuen Newsletter erstellen</b>
         <form method="POST">
