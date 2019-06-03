@@ -65,6 +65,13 @@ class Gallery(models.Model):
         return self.title
 
 
+class ClothingSize(models.Model):
+    title = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.title
+
+
 class ShopCategory(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, blank=True, verbose_name='Beschreibung')
@@ -79,6 +86,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Preis')
     image = models.ImageField(upload_to='shop', verbose_name='Bild')
     category = ForeignKey(ShopCategory, on_delete=models.CASCADE, verbose_name='Kategorie')
+    size = models.ManyToManyField(ClothingSize, null=True)
 
     def __str__(self):
         return self.title

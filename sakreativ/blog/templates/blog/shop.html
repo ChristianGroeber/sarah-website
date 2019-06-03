@@ -45,13 +45,24 @@
                             <p class='shop-price'>CHF {{ product.price }}.-</p>
                         </div>
                     </div>
-                        <a href='{{ product.id }}/add/'>
-                    <div class='row add-to-shopping-cart'>
-                        <div class="col-sm-12">
-                            <img src='{% static "img/shopping-cart.png" %}' height='30'>
+                    {% if product.size %}
+                        <div class="dropdown">
+                        <button class="dropbtn"><img src='{% static "img/shopping-cart.png" %}' height='30'></button>
+                        <div class="dropdown-content">
+                            {% for size in product.size.all %}
+                            <a href="{{ product.id }}/{{ size }}/add/">{{ size }}</a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <a href="{{ product.id }}/add/">
+                            <div class='row add-to-shopping-cart'>
+                                <div class="col-sm-12">
+                                    <img src='{% static "img/shopping-cart.png" %}' height='30'>
+                                </div>
                             </div>
-                    </div>
                         </a>
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>

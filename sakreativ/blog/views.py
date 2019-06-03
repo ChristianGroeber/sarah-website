@@ -48,7 +48,9 @@ def shop(request, category=None):
     return render(request, 'blog/shop.html', {'products': products, 'price': price, 'categories': categories, 'category': category})
 
 
-def add(request, product, operation):
+def add(request, product, operation, size=None):
+    if size:
+        print(size)
     if 'checkout' in str(request.path):
         response = redirect('/shop/checkout')
     else:
@@ -61,7 +63,6 @@ def add(request, product, operation):
     items = cart.items.all()
     product_to_add = Product.objects.get(pk=product)
     for item in items:
-        print(str(item), product_to_add.title)
         if str(item) == str(product_to_add.title):
             if operation == 'add':
                 item.amount += 1

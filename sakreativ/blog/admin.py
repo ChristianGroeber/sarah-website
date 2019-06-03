@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, UeberMich, MyImage, Page, Gallery, Product, ShoppingCart, AddedProduct, ShopCategory
+from .models import Post, UeberMich, MyImage, Page, Gallery, Product, ShoppingCart, AddedProduct, ShopCategory, ClothingSize
 # Register your models here.
 
 
@@ -12,3 +12,4 @@ admin.site.register(Product)
 admin.site.register(ShoppingCart)
 admin.site.register(AddedProduct)
 admin.site.register(ShopCategory)
+admin.site.register(ClothingSize)
