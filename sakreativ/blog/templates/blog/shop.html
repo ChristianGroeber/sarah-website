@@ -31,38 +31,38 @@
         <div class='row'>
             {% for product in products %}
             <div class='col-sm-4 shop-element'>
-                    <div class='row'>
-                        <div class='col-sm-6'>
-                            <h1 class='shop-element-title'>{{ product.title }}</h1>
-                            <p class='shop-element-description'>{{ product.description|slice:':50' }}</p>
-                        </div>
-                        <div class='col-sm-6'>
-                            <img src='{{ product.image.url }}' class='shop-image'>
-                        </div>
+                <div class='row'>
+                     <div class='col-sm-6'>
+                         <h1 class='shop-element-title'>{{ product.title }}</h1>
+                         <p class='shop-element-description'>{{ product.description|slice:':50' }}</p>
+                     </div>
+                     <div class='col-sm-6'>
+                         <img src='{{ product.image.url }}' class='shop-image'>
+                </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <p class='shop-price'>CHF {{ product.price }}.-</p>
                     </div>
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <p class='shop-price'>CHF {{ product.price }}.-</p>
-                        </div>
-                    </div>
-                    {% if product.size %}
-                        <div class="dropdown">
+                </div>
+                    {% if product.size.all %}
+                    <div class="dropdown">
                         <button class="dropbtn"><img src='{% static "img/shopping-cart.png" %}' height='30'></button>
                         <div class="dropdown-content">
-                            {% for size in product.size.all %}
+                        {% for size in product.size.all %}
                             <a href="{{ product.id }}/{{ size }}/add/">{{ size }}</a>
-                            {% endfor %}
+                        {% endfor %}
                         </div>
+                    </div>
                     {% else %}
-                        <a href="{{ product.id }}/add/">
-                            <div class='row add-to-shopping-cart'>
-                                <div class="col-sm-12">
-                                    <img src='{% static "img/shopping-cart.png" %}' height='30'>
-                                </div>
+                    <a href="{{ product.id }}/add/">
+                        <div class='row add-to-shopping-cart'>
+                            <div class="col-sm-12">
+                               <img src='{% static "img/shopping-cart.png" %}' height='30'/>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                     {% endif %}
-                </div>
             </div>
             {% endfor %}
         </div>

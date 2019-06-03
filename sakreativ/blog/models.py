@@ -86,7 +86,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Preis')
     image = models.ImageField(upload_to='shop', verbose_name='Bild')
     category = ForeignKey(ShopCategory, on_delete=models.CASCADE, verbose_name='Kategorie')
-    size = models.ManyToManyField(ClothingSize, null=True)
+    size = models.ManyToManyField(ClothingSize, blank=True)
 
     def __str__(self):
         return self.title
