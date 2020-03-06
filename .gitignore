@@ -5,8 +5,9 @@ sakreativ/media/*
 sakreativ/media_cdn/*
 sakreativ/sakreativ/__pycache__/*
 sakreativ/static_cdn/*
+sakreativ/newsletter/migrations/*
 .idea/*
 .vscode/*
 *.sqlite3
 .idea/sarah-website.iml
-sakreativ/sakreativ/pwd.txt
+sakreativ/sakreativ/gmail_pwd.txt

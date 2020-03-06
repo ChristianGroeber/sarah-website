@@ -3,23 +3,90 @@
 {% block title %}Sakrea - Galerie {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-sm-4">  <!--galleries-->
-        {% for gallery in galleries %}
-            <a href="../galerie/{{gallery.title}}">{{gallery.title}}</a>
-            <p></p>
-        {% endfor %}
-    </div>
-    <div class="col-sm-8"> <!--images-->
-        <div class="text-center text-lg-left row">
-            {% for img in list_images %}
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4">
-                    <img class="img-fluid img-thumbnail" src="{{ img.image.url }}" alt="{{ img.description }}">
-                </a>
-            </div>
+    <div class="row">
+        <div class="col-sm-4">  <!--galleries-->
+            {% for gallery in galleries %}
+                <a href="../galerie/{{ gallery.title }}">{{ gallery.title }}</a>
+                <p></p>
             {% endfor %}
         </div>
-    </div> <!--end images-->
-</div>
+        <div class="col-sm-8"> <!--images-->
+            <div class="gallery">
+                {% for img in list_images %}
+                    <div class="gallery-image-container">
+                        <a href="javascript:void(0)" onclick="showImage({{ img.id }})">
+                            <img src="{{ img.image.url }}" alt="{{ img.description }}" id="{{ img.id }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div> <!--end images-->
+    </div>
+{% endblock %}
+
+{% block popups %}
+    <div class="image-popup" id="image-popup">
+        <div class="text-right">
+            <a class="btn" href="javascript:void(0)" onclick="closeImagePopup()"><i class="fas fa-times"></i></a>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="javascript:void(0)" id="previous-image" onclick="previousImage()"><i
+                        class="fas fa-arrow-left"></i></a>
+            </div>
+            <div class="col-sm-10" id="image-container">
+            </div>
+            <div class="col-sm-1">
+                <a href="javascript:void(0)" id="next-image" onclick="nextImage()"><i
+                        class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_javascript %}
+    <script>
+        const images = [];
+        let currentImage = 0;
+        {% for img in list_images %}
+            images.push({{ img.id }});
+        {% endfor %}
+
+        $(document).ready(function () {
+            $(document).on('keydown', function () {
+                if (event.key === 'Escape') {
+                    closeImagePopup();
+                }
+            })
+        });
+
+        function showImage(imageId) {
+            $('#image-popup').show();
+            $('body').css('overflow', 'hidden');
+            document.getElementById('image-container').innerHTML = "<img src='" + $('#' + imageId).attr('src') + "' width='" + (window.width - 20) + "' height='" + (window.innerHeight - 20) + "'>";
+            currentImage = imageId;
+            $('#image-popup').css('top', window.scrollY + "px");
+        }
+
+        function previousImage() {
+            let prevImage = images[images.indexOf(currentImage) - 1];
+            if (prevImage === undefined) {
+                prevImage = images[images.length - 1];
+            }
+            showImage(prevImage);
+        }
+
+        function nextImage() {
+            let nextImage = images[images.indexOf(currentImage) + 1];
+            if (nextImage === undefined) {
+                nextImage = images[0];
+            }
+            showImage(nextImage);
+        }
+
+        function closeImagePopup() {
+            $('body').css('overflow', 'auto');
+            $('#image-popup').hide();
+        }
+    </script>
 {% endblock %}

@@ -31,6 +31,10 @@ class UeberMich(models.Model):
             raise ValidationError('There is can be only one JuicerBaseSettings instance')
         return super(UeberMich, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = 'Über mich'
+        verbose_name_plural = 'Über mich '
+
 
 class Page(models.Model):
     title = models.CharField(max_length=50)
@@ -40,6 +44,10 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Seite'
+        verbose_name_plural = 'Seiten'
 
 
 class MyImage(models.Model):
@@ -55,6 +63,10 @@ class MyImage(models.Model):
         img.thumbnail((300, 300), Image.ANTIALIAS)
         img.save(self.image.path)
 
+    class Meta:
+        verbose_name = 'Bild'
+        verbose_name_plural = 'Bilder'
+
 
 class Gallery(models.Model):
     title = models.CharField(max_length=100)
@@ -64,12 +76,20 @@ class Gallery(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Galerie'
+        verbose_name_plural = 'Galerien'
+
 
 class ClothingSize(models.Model):
     title = models.CharField(max_length=10)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Kleider Grösse'
+        verbose_name_plural = 'Kleider Grössen'
 
 
 class ShopCategory(models.Model):
@@ -79,6 +99,10 @@ class ShopCategory(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Shop Kategorie'
+        verbose_name_plural = 'Shop Kategorien'
+
 
 class Product(models.Model):
     title = models.CharField(max_length=30)
@@ -86,10 +110,14 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Preis')
     image = models.ImageField(upload_to='shop', verbose_name='Bild')
     category = ForeignKey(ShopCategory, on_delete=models.CASCADE, verbose_name='Kategorie')
-    size = models.ManyToManyField(ClothingSize, blank=True)
+    size = models.ManyToManyField(ClothingSize, blank=True, verbose_name='Grösse')
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Produkt'
+        verbose_name_plural = 'Produkte'
 
 
 class AddedProduct(models.Model):
@@ -101,6 +129,10 @@ class AddedProduct(models.Model):
 
     def price(self):
         return int(self.item.price) * int(self.amount)
+
+    class Meta:
+        verbose_name = 'Hinzugefügtes Produkt'
+        verbose_name_plural = 'Hinzugefügte Produkte'
 
 
 class ShoppingCart(models.Model):
@@ -115,6 +147,10 @@ class ShoppingCart(models.Model):
             price += item.price()
         return price
 
+    class Meta:
+        verbose_name = 'Einkaufswagen'
+        verbose_name_plural = 'Einkaufswagen'
+
 
 class Customer(models.Model):
     name = models.CharField(max_length=50)
@@ -127,3 +163,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return str(self.first_name) + " " + str(self.name)
+
+    class Meta:
+        verbose_name = 'Kunde'
+        verbose_name_plural = 'Kunden'

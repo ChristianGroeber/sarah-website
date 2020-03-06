@@ -48,7 +48,7 @@ def send_newsletter(request, newsletter_id):
         to.append(subscriber.email_address)
     print(to)
     subject = 'Neuer Blog Beitrag: ' + news.blog_post.title
-    mail_from = 'sakrea2019@gmail.com'
+    mail_from = 'Sara von Sakrea <sakrea2019@gmail.com>'
     ctx = {'post': news.blog_post, 'subscriber': ''}
 
     for subscriber in subscribers:
